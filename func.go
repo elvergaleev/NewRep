@@ -1,2 +1,3 @@
 
 func divirse
+func print
