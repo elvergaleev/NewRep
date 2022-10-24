@@ -1,72 +1,52 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 func main() {
-	// defer block
-	//defer fmt.Println(1)
-	//defer fmt.Println(2)
-	//fmt.Println(sum(2, 3))
+	var firstVariable bool
+	fmt.Println(firstVariable)
 
-	// goroutines block
-	//runtime.GOMAXPROCS(1)
-	//fmt.Println(runtime.NumCPU())
+	var secondVariable bool
+	fmt.Println(secondVariable)
 
-	//go showNumbers(100)
+	age := 13
 
-	//runtime.Gosched()
-	//time.Sleep(time.Second)
-	fmt.Println("exit")
+	// Basic if
+	if age < 18 { // можно короче: if age < 18 {
+		fmt.Println("You are too young (full)")
+	}
 
-	makePanic()
-}
+	//Short syntax
+	if isChild := isChildren(age); isChild == true { // можно короче: if isChild := isChildren(age); isChild {
+		fmt.Println("You are too young (short)")
+		fmt.Println(isChild)
+	}
+	//fmt.Println(isChild)
 
-func showNumbers(num int) {
-	for i := 0; i < num; i++ {
-		fmt.Println(i)
+	// If ... else
+	age = 20
+	if age < 18 {
+		fmt.Println("you are too young")
+	} else {
+		fmt.Println("You are an adult")
+	}
+
+	// &&
+	if age >= 7 && age <= 18 {
+		fmt.Println("You are in school")
+	}
+
+	// ||
+	if age == 14 || age == 20 || age == 40 {
+		fmt.Println("You have to get a new passport")
+	}
+
+	// !
+	if !isChildren(age) {
+		fmt.Println("You are an adult")
 	}
 }
 
-func sum(x, y int) (sum int) {
-	defer func() {
-		sum *= 2
-	}()
-
-	sum = x + y
-	return
-}
-
-func deferValues() {
-	for i := 0; i < 10; i++ {
-		defer fmt.Println("first", i)
-	}
-	for i := 0; i < 10; i++ {
-		defer func() {
-			fmt.Println("second", i)
-		}()
-	}
-
-	for i := 0; i < 10; i++ {
-		k := i
-		defer func() {
-			fmt.Println("third", k)
-		}()
-	}
-	for i := 0; i < 10; i++ {
-		defer func(k int) {
-			fmt.Println("fourth", k)
-		}(i)
-	}
-}
-
-func makePanic() {
-	defer func() {
-		panicValue := recover()
-		fmt.Println(panicValue)
-	}()
-
-	panic("some panic")
-	fmt.Println("Unreachable code")
+func isChildren(age int) bool {
+	return age < 18
 }
