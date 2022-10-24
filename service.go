@@ -9,7 +9,6 @@ func main() {
 	//defer fmt.Println(1)
 	//defer fmt.Println(2)
 	//fmt.Println(sum(2, 3))
-	//deferValues()
 
 	// goroutines block
 	//runtime.GOMAXPROCS(1)
